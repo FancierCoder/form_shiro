@@ -13,12 +13,12 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
 
-    <link rel="shortcut icon" href="${staticPath}/img/favicon.ico">
-    <link href="${staticPath}/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="${staticPath}/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link rel="shortcut icon" href="${staticPath}/static/img/favicon.ico">
+    <link href="${staticPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${staticPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
 
-    <link href="${staticPath}/css/animate.css" rel="stylesheet">
-    <link href="${staticPath}/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="${staticPath}/static/css/animate.css" rel="stylesheet">
+    <link href="${staticPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
 
 </head>
 
@@ -144,15 +144,15 @@
 
 </div>
 <!-- 全局js -->
-<script src="${staticPath}/js/jquery.min.js?v=2.1.4"></script>
-<script src="${staticPath}/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="${staticPath}/static/js/jquery.min.js?v=2.1.4"></script>
+<script src="${staticPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
 
 
 <!-- ECharts -->
-<script src="${staticPath}/js/plugins/echarts/echarts-all.js"></script>
+<script src="${staticPath}/static/js/plugins/echarts/echarts-all.js"></script>
 
 <!-- 自定义js -->
-<script src="${staticPath}/js/content.js?v=1.0.0"></script>
+<script src="${staticPath}/static/js/content.js?v=1.0.0"></script>
 
 
 <script type="text/javascript">

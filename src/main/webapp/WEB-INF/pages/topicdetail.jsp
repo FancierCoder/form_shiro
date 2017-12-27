@@ -10,11 +10,11 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
 
-    <link rel="shortcut icon" href="${staticPath}/img/favicon.ico">
-    <link href="${staticPath}/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="${staticPath}/css/font-awesome.css?v=4.4.0" rel="stylesheet">
-    <link href="${staticPath}/css/animate.css" rel="stylesheet">
-    <link href="${staticPath}/css/style.css?v=4.1.0" rel="stylesheet">
+    <link rel="shortcut icon" href="${staticPath}/static/img/favicon.ico">
+    <link href="${staticPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${staticPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="${staticPath}/static/css/animate.css" rel="stylesheet">
+    <link href="${staticPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
     <style type="text/css">
         .loadnav {
             color: #5fd3d4;
@@ -54,7 +54,7 @@
             <div class="social-feed-separated">
                 <div class="social-avatar">
                     <a href="${staticPath}/user/showUser/${topic.tuid}">
-                        <img alt="image" src="${staticPath}/img/${topic.headimg}">
+                        <img alt="image" src="${staticPath}/static/img/${topic.headimg}">
                     </a>
                 </div>
                 <div class="social-feed-box">
@@ -99,7 +99,7 @@
                             <c:if test="${sessionScope.user != null}">
                                 <div class="social-comment">
                                     <a class="pull-left">
-                                        <img alt="image" src="${staticPath}/img/${sessionScope.user.headimg}"/>
+                                        <img alt="image" src="${staticPath}/static/img/${sessionScope.user.headimg}"/>
                                     </a>
                                     <div class="media-body">
                                         <textarea id="saytext" class="form-control rootcontent"
@@ -123,7 +123,7 @@
                             <!--根评论开始-->
                             <div class="social-comment" rootcid="${single.rootcomment.cid}">
                                 <a href="${staticPath}/user/showUser/${single.rootcomment.uid}" class="pull-left">
-                                    <img alt="image" src="${staticPath}/img/${single.rootcomment.headimg}">
+                                    <img alt="image" src="${staticPath}/static/img/${single.rootcomment.headimg}">
                                 </a>
                                 <div class="media-body" id="${single.rootcomment.cid}">
                                     <a href="${staticPath}/user/showUser/${single.rootcomment.uid}">
@@ -143,7 +143,7 @@
                                     <c:forEach items="${single.root_directcomment}" var="dire">
                                         <div class="social-comment">
                                             <a href="${staticPath}/user/showUser/${dire.uid}" class="pull-left">
-                                                <img alt="image" src="${staticPath}/img/${dire.headimg}">
+                                                <img alt="image" src="${staticPath}/static/img/${dire.headimg}">
                                             </a>
                                             <div cid="" class="media-body" directuid="${dire.uid}" id="${dire.cid}">
                                                 <a href="${staticPath}/user/showUser/${dire.uid}">${dire.nickname}</a>
@@ -162,7 +162,8 @@
                                                     <div class="social-comment">
                                                         <a href="${staticPath}/user/showUser/${ndire.uid}"
                                                            class="pull-left">
-                                                            <img alt="image" src="${staticPath}/img/${ndire.headimg}">
+                                                            <img alt="image"
+                                                                 src="${staticPath}/static/img/${ndire.headimg}">
                                                         </a>
                                                         <div class="media-body" directuid="${ndire.uid}"
                                                              id="${ndire.cid}">
@@ -198,7 +199,7 @@
                         <c:if test="${sessionScope.user!=null}">
                             <div class="social-comment">
                                 <a class="pull-left">
-                                    <img alt="image" src="${staticPath}/img/${sessionScope.user.headimg}"/>
+                                    <img alt="image" src="${staticPath}/static/img/${sessionScope.user.headimg}"/>
                                 </a>
                                 <div class="media-body">
                                     <textarea id="saytext" class="form-control rootcontent"
@@ -221,14 +222,14 @@
     </div>
 </div>
 <!-- 全局js -->
-<script src="${staticPath}/js/jquery-1.12.4.js"></script>
-<script src="${staticPath}/js/jquery-migrate-1.4.1.js"></script>
-<script src="${staticPath}/js/bootstrap.min.js?v=3.3.6"></script>
-<script src="${staticPath}/js/plugins/layer/layer.min.js"></script>
-<script type="text/javascript" src="${staticPath}/js/plugins/qqface/jquery.qqFace.js"></script>
-<link rel="stylesheet" href="${staticPath}/js/plugins/qqface/css/qqFace.css">
+<script src="${staticPath}/static/js/jquery-1.12.4.js"></script>
+<script src="${staticPath}/static/js/jquery-migrate-1.4.1.js"></script>
+<script src="${staticPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="${staticPath}/static/js/plugins/layer/layer.min.js"></script>
+<script type="text/javascript" src="${staticPath}/static/js/plugins/qqface/jquery.qqFace.js"></script>
+<link rel="stylesheet" href="${staticPath}/static/js/plugins/qqface/css/qqFace.css">
 <!-- 自定义js -->
-<script src="${staticPath}/js/content.js?v=1.0.0"></script>
+<script src="${staticPath}/static/js/content.js?v=1.0.0"></script>
 
 
 <script type="text/javascript">
@@ -236,7 +237,7 @@
     $(function () {
         $('.emotion').qqFace({
             assign: 'saytext', //给那个控件赋值
-            path: '${staticPath}/js/plugins/qqface/face/' //表情存放的路径
+            path: '${staticPath}/static/js/plugins/qqface/face/' //表情存放的路径
         });
     });
 </c:if>
@@ -247,7 +248,7 @@
         str = str.replace(/\</g, '&lt;');
         str = str.replace(/\>/g, '&gt;');
         str = str.replace(/\n/g, '<br/>');
-        str = str.replace(/\[em_([0-9]*)\]/g, '<img src="${staticPath}/js/plugins/qqface/face/$1.gif" border="0" />');
+        str = str.replace(/\[em_([0-9]*)\]/g, '<img src="${staticPath}/static/js/plugins/qqface/face/$1.gif" border="0" />');
         return str;
     }
 
@@ -318,7 +319,7 @@
             $('#direct').remove();
         }
         var parentName = $(obj).parent().children().first('a').text().trim();
-        var html = '<div class="social-comment" id="ndirect"> <a  class="pull-left"> <img alt="image" src="${staticPath}/img/${sessionScope.user.headimg}"/> </a> <div class="media-body"> <textarea class="form-control Ndirectcontent"  placeholder="@' + parentName + '"></textarea> <button type="button" class="btn btn-primary "  style="float: right;margin-top: 1px" onclick="submitNdirect(this,' + direcid +
+        var html = '<div class="social-comment" id="ndirect"> <a  class="pull-left"> <img alt="image" src="${staticPath}/static/img/${sessionScope.user.headimg}"/> </a> <div class="media-body"> <textarea class="form-control Ndirectcontent"  placeholder="@' + parentName + '"></textarea> <button type="button" class="btn btn-primary "  style="float: right;margin-top: 1px" onclick="submitNdirect(this,' + direcid +
             ')">发表评论</button> ' +
             '<button type="button" class="btn btn-primary " onclick="cancle(this)" style="float: right;margin-top: 1px;margin-right:2px">取消</button></div> </div>';
         $(obj).parent().after(html);
@@ -361,7 +362,7 @@
 
         var html = '<div class="social-comment" id="direct"> ' +
             '<a  class="pull-left"> ' +
-            '<img alt="image" src="${staticPath}/img/${sessionScope.user.headimg}"/> </a> <div class="media-body"> <textarea class="form-control directcontent"  placeholder="@' + rootname + '"></textarea> <button type="button" class="btn btn-primary "  style="float: right;margin-top: 1px" onclick="submitdirect(this,' + rootid + ')">发表评论</button>' +
+            '<img alt="image" src="${staticPath}/static/img/${sessionScope.user.headimg}"/> </a> <div class="media-body"> <textarea class="form-control directcontent"  placeholder="@' + rootname + '"></textarea> <button type="button" class="btn btn-primary "  style="float: right;margin-top: 1px" onclick="submitdirect(this,' + rootid + ')">发表评论</button>' +
             '<button type="button" class="btn btn-primary " onclick="cancle(this)" style="float: right;margin-top: 1px;margin-right:2px">取消</button> </div> </div>';
         $(obj).parent().after(html);
     }

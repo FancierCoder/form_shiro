@@ -54,7 +54,7 @@
                                         <div class="small m-b-xs">
                                             <a class="pull-left">
                                                 <img alt="image" class="img-circle" style="width: 38px;height: 38px;"
-                                                     src="${staticPath}/img/${item.headimg}">
+                                                     src="${staticPath}/static/img/${item.headimg}">
                                             </a>
 
                                             <strong style="margin-left: 5px;margin-bottom: 0px">${item.uNickName}</strong> </span>

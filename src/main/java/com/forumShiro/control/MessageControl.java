@@ -78,7 +78,7 @@ public class MessageControl {
                 }
             }
         }
-        if (users1 != null) {
+        if (users1 != null && users2 != null) {
             users2.addAll(users1);
         }
         map.put("myfriends", users2);

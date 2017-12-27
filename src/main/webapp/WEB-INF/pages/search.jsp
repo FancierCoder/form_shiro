@@ -55,7 +55,7 @@
                                                         </td>
                                                         <td class="project-people">
                                                             <a href=""><img alt="image" class="img-circle"
-                                                                            src="${staticPath}/img/${single.headimg}"></a>
+                                                                            src="${staticPath}/static/img/${single.headimg}"></a>
                                                         </td>
                                                         <td class="project-people">
                                                             <c:if test="${single.usex==0}">
@@ -111,7 +111,7 @@
                                                                class="pull-left">
                                                                 <img alt="image" class="img-circle"
                                                                      style="width: 38px;height: 38px;"
-                                                                     src="${staticPath}/img/${item.headimg}">
+                                                                     src="${staticPath}/static/img/${item.headimg}">
                                                             </a>
 
                                                             <strong style="margin-left: 5px;margin-bottom: 0px">${item.uNickName}</strong> </span>

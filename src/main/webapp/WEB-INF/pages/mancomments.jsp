@@ -3,21 +3,21 @@
 <html>
 <head>
     <title>评论管理</title>
-    <link rel="shortcut icon" href="${staticPath}/img/favicon.ico">
-    <link href="${staticPath}/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${staticPath}/css/font-awesome.css" rel="stylesheet">
-    <link href="${staticPath}/css/animate.css" rel="stylesheet">
-    <link href="${staticPath}/css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="${staticPath}/static/img/favicon.ico">
+    <link href="${staticPath}/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${staticPath}/static/css/font-awesome.css" rel="stylesheet">
+    <link href="${staticPath}/static/css/animate.css" rel="stylesheet">
+    <link href="${staticPath}/static/css/style.css" rel="stylesheet">
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="${staticPath}/css/plugins/bootstrap-table/bootstrap-table.min.css">
-    <script src="${staticPath}/js/jquery.min.js"></script>
-    <script src="${staticPath}/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="${staticPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css">
+    <script src="${staticPath}/static/js/jquery.min.js"></script>
+    <script src="${staticPath}/static/js/bootstrap.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
-    <script src="${staticPath}/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="${staticPath}/static/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
 
     <!-- Latest compiled and minified Locales -->
-    <script src="${staticPath}/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
-    <script src="${staticPath}/js/plugins/layer/layer.min.js"></script>
+    <script src="${staticPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="${staticPath}/static/js/plugins/layer/layer.min.js"></script>
 
     <style type="text/css">
         td {
@@ -192,7 +192,7 @@
     }
 
     function headimgFormatter(value, row, index) {
-        return '<img  class="img-circle" style="width: 32px;height: 32px;" src="${staticPath}/img/' + value + '"/>';
+        return '<img  class="img-circle" style="width: 32px;height: 32px;" src="${staticPath}/static/img/' + value + '"/>';
     }
 
     function stausFormatter(value, row, inde) {
@@ -247,7 +247,7 @@
         str = str.replace(/\</g, '&lt;');
         str = str.replace(/\>/g, '&gt;');
         str = str.replace(/\n/g, '<br/>');
-        str = str.replace(/\[em_([0-9]*)\]/g, '<img src="${staticPath}/js/plugins/qqface/face/$1.gif" border="0" />');
+        str = str.replace(/\[em_([0-9]*)\]/g, '<img src="${staticPath}/static/js/plugins/qqface/face/$1.gif" border="0" />');
         return str;
     }
 

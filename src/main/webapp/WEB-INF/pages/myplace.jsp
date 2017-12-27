@@ -25,7 +25,7 @@
                 <div>
                     <div class="ibox-content no-padding border-left-right">
                         <img alt="image" style="height: 300px;width: 300px" class="img-responsive circle-border"
-                             src="${staticPath}/img/${sessionScope.user.headimg}">
+                             src="${staticPath}/static/img/${sessionScope.user.headimg}">
                     </div>
                     <div class="ibox-content profile-content">
                         <h4>账号：${sessionScope.user.uemail}</h4>
@@ -98,7 +98,7 @@
                                     <div class="feed-element">
                                         <a href="${staticPath}/showUser/${item.tuid}" class="pull-left">
                                             <img alt="${item.uNickName}" class="img-circle"
-                                                 src="${staticPath}/img/${item.headimg}">
+                                                 src="${staticPath}/static/img/${item.headimg}">
                                         </a>
                                         <div class="media-body ">
                                             <small class="pull-right">${item.times}前</small>

@@ -53,13 +53,13 @@
                                                 <c:if test="${friend.uid != -1}">
                                                     <a href="${staticPath}/user/showUser/${friend.uid}">
                                                         <img class="chat-avatar"
-                                                             src="${staticPath}/img/${friend.headimg}"
+                                                             src="${staticPath}/static/img/${friend.headimg}"
                                                              alt="${friend.uemail}">
                                                     </a>
                                                 </c:if>
                                                 <c:if test="${friend.uid==-1}">
                                                     <a><img class="chat-avatar"
-                                                            src="${staticPath}/img/${friend.headimg}" title="系统"></a>
+                                                            src="${staticPath}/static/img/${friend.headimg}" title="系统"></a>
                                                 </c:if>
                                                 <div class="chat-user-name">
                                                     <a onclick="chatToOne(${friend.uid},this)">${friend.unickname}</a>
@@ -113,7 +113,7 @@
     $(function () {
         $('.emotion').qqFace({
             assign: 'sendmessage', //给那个控件赋值
-            path: '${staticPath}/js/plugins/qqface/face/' //表情存放的路径
+            path: '${staticPath}/static/js/plugins/qqface/face/' //表情存放的路径
         });
     });
 
@@ -122,7 +122,7 @@
         str = str.replace(/\</g, '&lt;');
         str = str.replace(/\>/g, '&gt;');
         str = str.replace(/\n/g, '<br/>');
-        str = str.replace(/\[em_([0-9]*)\]/g, '<img src="${staticPath}/js/plugins/qqface/face/$1.gif" border="0" />');
+        str = str.replace(/\[em_([0-9]*)\]/g, '<img src="${staticPath}/static/js/plugins/qqface/face/$1.gif" border="0" />');
         return str;
     }
 
@@ -160,7 +160,7 @@
             var img = $('#title').children("img").attr("src");
             var nickname = $('#title').children("span").text();
             var hesend = '<div class="chat-message" > ' +
-                '<img class="hismessage-avatar img-circle" src="${staticPath}/' + img + '" alt=""> ' +
+                '<img class="hismessage-avatar img-circle" src="${staticPath}/static/' + img + '" alt=""> ' +
                 '<div class="hismessage"> <a class="message-author" >' + nickname +
                 '</a> ' +
                 '<span class="hismessage-date"> ' + dateFormatter(new Date()) +
@@ -199,7 +199,7 @@
                         var discussiondiv = $('#discussion');
                         if (data[i].sifromuid ==${sessionScope.user.uid}) {
                             var isend = '<div class="chat-message"> ' +
-                                '<img class="mymessage-avatar " src="${staticPath}/img/${sessionScope.user.headimg}" alt=""> ' +
+                                '<img class="mymessage-avatar " src="${staticPath}/static/img/${sessionScope.user.headimg}" alt=""> ' +
                                 '<div class="mymessage"> ' +
                                 '<a class="mymessage-author" > ${sessionScope.user.unickname}</a> ' +
                                 '<span class="mymessage-date">' + dateFormatter(data[i].time) +
@@ -269,7 +269,7 @@
             data["content"] = text;
             websocket.send(JSON.stringify(data));
             var isend = '<div class="chat-message"> ' +
-                '<img class="mymessage-avatar " src="${staticPath}/img/${sessionScope.user.headimg}" alt=""> ' +
+                '<img class="mymessage-avatar " src="${staticPath}/static/img/${sessionScope.user.headimg}" alt=""> ' +
                 '<div class="mymessage"> ' +
                 '<a class="mymessage-author" > ${sessionScope.user.unickname}</a> ' +
                 '<span class="mymessage-date">' + dateFormatter(new Date()) +

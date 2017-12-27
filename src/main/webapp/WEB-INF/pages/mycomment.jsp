@@ -162,7 +162,7 @@
     }
 
     function headimgFormatter(value, row, index) {
-        return '<img  class="img-circle" style="width: 32px;height: 32px;" src="${staticPath}/img/' + value + '"/>';
+        return '<img  class="img-circle" style="width: 32px;height: 32px;" src="${staticPath}/static/img/' + value + '"/>';
     }
 
     function stausFormatter(value, row, inde) {
@@ -248,7 +248,7 @@
         str = str.replace(/\</g, '&lt;');
         str = str.replace(/\>/g, '&gt;');
         str = str.replace(/\n/g, '<br/>');
-        str = str.replace(/\[em_([0-9]*)\]/g, '<img src="${staticPath}/js/plugins/qqface/face/$1.gif" border="0" />');
+        str = str.replace(/\[em_([0-9]*)\]/g, '<img src="${staticPath}/static/js/plugins/qqface/face/$1.gif" border="0" />');
         return str;
     }
 

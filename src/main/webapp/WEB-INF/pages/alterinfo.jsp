@@ -34,7 +34,7 @@
                                     <div class="image-crop" id="imgitem">
                                         <img id="myheadimg" style="cursor: hand;width: 200px;height: 200px"
                                              class="circle-border" onclick="imgitem();"
-                                             src="${staticPath}/img/${sessionScope.user.headimg}"/>
+                                             src="${staticPath}/static/img/${sessionScope.user.headimg}"/>
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +136,7 @@
         } else {
             var flag = 0;
             var headimg = $('#myheadimg').attr('src');
-            if (headimg != "${staticPath}/img/${sessionScope.user.headimg}") {
+            if (headimg != "${staticPath}/static/img/${sessionScope.user.headimg}") {
                 flag = 1;
             } else {
                 flag = 0;

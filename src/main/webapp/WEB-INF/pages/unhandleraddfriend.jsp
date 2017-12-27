@@ -50,7 +50,7 @@
                                             </td>
                                             <td class="project-people">
                                                 <a href=""><img alt="image" class="img-circle"
-                                                                src="${staticPath}/img/${single.user.headimg}"></a>
+                                                                src="${staticPath}/static/img/${single.user.headimg}"></a>
                                             </td>
                                             <td class="project-actions">
                                                 <a class="btn btn-white btn-sm"
@@ -76,7 +76,7 @@
                                                 <a href="${staticPath}/user/showUser/${single.user.uid}"><img
                                                         alt="image"
                                                         class="img-circle"
-                                                        src="${staticPath}/img/${single.user.headimg}"></a>
+                                                        src="${staticPath}/static/img/${single.user.headimg}"></a>
                                             </td>
                                             <td class="project-actions">
                                                 <a class="btn btn-white btn-sm"

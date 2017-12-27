@@ -33,7 +33,7 @@
                                 <div class="feed-element">
                                     <a href="javascript:void(0) " class="pull-left">
                                         <img alt="${item.unickname}" class="img-circle"
-                                             src="${staticPath}/img/${item.headimg}">
+                                             src="${staticPath}/static/img/${item.headimg}">
                                     </a>
                                     <div class="media-body ">
                                         <small class="pull-right">${item.ctime}</small>
@@ -77,7 +77,7 @@
         str = str.replace(/\</g, '&lt;');
         str = str.replace(/\>/g, '&gt;');
         str = str.replace(/\n/g, '<br/>');
-        str = str.replace(/\[em_([0-9]*)\]/g, '<img src="${staticPath}/js/plugins/qqface/face/$1.gif" border="0" />');
+        str = str.replace(/\[em_([0-9]*)\]/g, '<img src="${staticPath}/static/js/plugins/qqface/face/$1.gif" border="0" />');
         return str;
     }
 

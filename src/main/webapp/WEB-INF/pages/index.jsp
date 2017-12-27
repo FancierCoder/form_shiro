@@ -153,7 +153,7 @@
                             <a class="dropdown-toggle J_menuItem count-info" data-toggle="dropdown"
                                href="${staticPath}/user/showmyplace">
                                 <img alt="image" class="img-circle" style="width: 32px;height: 32px;"
-                                     src="${staticPath}/img/${sessionScope.user.headimg}"/>
+                                     src="${staticPath}/static/img/${sessionScope.user.headimg}"/>
                             </a>
                         </li>
                         <li class="dropdown">
@@ -330,7 +330,7 @@
             shade: false,
             maxmin: true, //开启最大化最小化按钮
             area: ['600px', '600px'],
-            content: ['${staticPath}/register.html', 'no']
+            content: '${staticPath}/register.html'
         });
     });
 
@@ -341,7 +341,7 @@
             shadeClose: false,
             shade: 0.3,
             area: ['400px', '500px'],
-            content: '${staticPath}/user/intoalterpassword'
+            content: ['${staticPath}/user/intoalterpassword', 'no']
         });
     });
 

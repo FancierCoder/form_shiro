@@ -160,7 +160,7 @@
     }
 
     function headimgFormatter(value, row, index) {
-        return '<img  class="img-circle" style="width: 32px;height: 32px;" src="${staticPath}/img/' + value + '"/>';
+        return '<img  class="img-circle" style="width: 32px;height: 32px;" src="${staticPath}/static/img/' + value + '"/>';
     }
 
     function dateFormatter(value) {

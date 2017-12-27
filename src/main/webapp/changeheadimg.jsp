@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="image-crop" style="height: 400px">
-                    <img src="${staticPath}/img/${sessionScope.user.headimg}">
+                    <img src="${staticPath}/static/img/${sessionScope.user.headimg}">
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
