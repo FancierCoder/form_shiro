@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.forumShiro.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.forumShiro.model.User">
+        <id column="uid" property="uid" />
+        <result column="uemail" property="uemail" />
+        <result column="upassword" property="upassword" />
+        <result column="usalt" property="usalt" />
+        <result column="unickname" property="unickname" />
+        <result column="usex" property="usex" />
+        <result column="ubirthday" property="ubirthday" />
+        <result column="ulevel" property="ulevel" />
+        <result column="headimg" property="headimg" />
+        <result column="ustatement" property="ustatement" />
+        <result column="uregtime" property="uregtime" />
+        <result column="ustate" property="ustate" />
+        <result column="upoint" property="upoint" />
+        <result column="utype" property="utype" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        uid, uemail, upassword, usalt, unickname, usex, ubirthday, ulevel, headimg, ustatement, uregtime, ustate, upoint, utype
+    </sql>
+
+    <!-- 查询用户的所有权限 -->
+    <select id="queryAllPerms" resultType="string">
+        select m.perms from user_role ur
+        LEFT JOIN role_menu rm on ur.role_id = rm.role_id
+        LEFT JOIN menu m on rm.menu_id = m.menu_id
+        where ur.uid = #{userId}
+    </select>
+
+    <!-- 查询用户的所有菜单ID -->
+    <select id="queryAllMenuId" resultType="long">
+        select distinct rm.menu_id from user_role ur
+        LEFT JOIN role_menu rm on ur.role_id = rm.role_id
+        where ur.uid = #{userId}
+    </select>
+
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.forumShiro.mapper.LogtableMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.forumShiro.model.Logtable">
+        <id column="lid" property="lid"/>
+        <result column="uid" property="uid"/>
+        <result column="ip" property="ip"/>
+        <result column="time" property="time"/>
+        <result column="type" property="type"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        lid, uid, ip, time, type
+    </sql>
+
+    <select id="todayLoginCount" resultType="int">
+        SELECT count(*)
+        FROM logtable
+        WHERE DATEDIFF(#{date}, time) = 0 AND uid = #{uid} AND type = 1
+    </select>
+    <select id="todayTopicCount" resultType="int">
+        SELECT count(*)
+        FROM logtable
+        WHERE DATEDIFF(#{date}, time) = 0 AND uid = #{uid} AND type = 5
+    </select>
+
+</mapper>
