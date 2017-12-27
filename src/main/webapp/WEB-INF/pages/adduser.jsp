@@ -10,16 +10,16 @@
     <title> 增加用户</title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
-    <link href="${ctx}/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${ctx}/css/font-awesome.css" rel="stylesheet">
-    <link href="${ctx}/css/animate.css" rel="stylesheet">
-    <link href="${ctx}/css/style.css" rel="stylesheet">
-    <script type="text/javascript" src="${ctx}/js/jquery.min.js"></script>
-    <script type="text/javascript" src="${ctx}/js/bootstrap.min.js"></script>
+    <link href="${ctx}/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${ctx}/static/css/font-awesome.css" rel="stylesheet">
+    <link href="${ctx}/static/css/animate.css" rel="stylesheet">
+    <link href="${ctx}/static/css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="${ctx}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctx}/static/js/bootstrap.min.js"></script>
     <!--layer插件-->
-    <script src="${ctx}/js/plugins/layer/layer.min.js"></script>
+    <script src="${ctx}/static/js/plugins/layer/layer.min.js"></script>
     <!-- layerDate plugin javascript -->
-    <script src="${ctx}/js/plugins/layer/laydate/laydate.js"></script>
+    <script src="${ctx}/static/js/plugins/layer/laydate/laydate.js"></script>
 
 </head>
 <body class="gray-bg animated bounceInLeft">
@@ -133,7 +133,7 @@
                 layer.tips("积分不能为负数", $('#upoint'));
             } else {
                 $.ajax({
-                    url: "/madduser",
+                    url: "/manage/madduser",
                     type: 'post',
                     data: {
                         uemail: email, unickname: nickname,
