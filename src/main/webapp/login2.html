@@ -28,17 +28,21 @@
 <body class="signin">
 <div class="signinpanel">
     <div class="row">
-        <div class="col-sm-12">
-            <form method="post" action="/user/checkLogin" onsubmit="return checkNull()">
+        <!--<div class="col-sm-12">-->
+        <form method="post" class="m-t" action="/user/checkLogin" onsubmit="return checkNull()">
                 <h4 class="no-margins">登录：</h4>
                 <p class="m-t-md">登录到Z+后台</p>
                 <input type="text" class="form-control uname" placeholder="用户名" id="username" name="username"/>
                 <input type="password" class="form-control pword m-b" placeholder="密码" id="password" name="password"/>
+            <p>
+                <input type="text" id="verCode" class="col-lg-6 pword" name="verCode" placeholder="验证码"/>
+                <img id="code" src="/captcha.jpg" height="30px" onclick="refreshCode()">
+            </p>
                 <a href="">忘记密码了？</a>
                 <button class="btn btn-success btn-block" id="submit_btn" type="button" onclick="submit_m()">登录</button>
             </form>
         </div>
-    </div>
+    <!--</div>-->
     <div class="signup-footer">
         <div class="pull-left">
             &copy; zAdmin
@@ -71,7 +75,11 @@
             layer.tips("账号或密码不允许为空", $('form'));
             return false;
         } else {
-            return true;
+            if ($.trim($('#verCode').val()) == '') {
+                layer.tips("验证码不允许为空", $('#verCode'));
+                return false;
+            } else
+                return true;
         }
     }
 
@@ -79,12 +87,13 @@
         if (checkNull()) {
             var username = $.trim($('#username').val());
             var password = $.trim($('#password').val());
+            var verCode = $.trim($('#verCode').val());
             $.ajax({
                 type: 'POST',
                 url: "/user/checkLogin",
                 cache: false,
                 dataType: "json",
-                data: {username: username, password: password},
+                data: {username: username, password: password, verCode: verCode},
                 success: function (data) {
 
                     if (data.msg == "err") {
@@ -109,7 +118,8 @@
                             layer.tips("您的账号还有" + data + "天解封", $('form'), {tips: [2, '#0FA6D8']});
                         }
                     } else if (data.code == 500) {
-                        layer.tips(data.msg, $('#username'));
+                        layer.tips(data.msg, $('form'));
+                        refreshCode();
                     } else if (data.msg == "success"){
                         layer.msg("抱歉，非管理员不能进入后台", $('form'), {tips: [1, '#FFA6D8']});
                         //$.this.isDisabled;
@@ -120,6 +130,10 @@
                 }
             });
         }
+    }
+
+    function refreshCode() {
+        $("#code").attr("src", "/captcha.jpg?t=" + $.now());
     }
 </script>
 

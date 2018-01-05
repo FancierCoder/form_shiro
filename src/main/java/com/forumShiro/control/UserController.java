@@ -10,6 +10,7 @@ import com.forumShiro.model.VO.CommentVo;
 import com.forumShiro.model.VO.TopicCatalogVo;
 import com.forumShiro.shiro.ShiroUtils;
 import com.forumShiro.util.*;
+import com.google.code.kaptcha.Constants;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
@@ -59,8 +60,13 @@ public class UserController {
 
     @RequestMapping(value = "/checkLogin", method = RequestMethod.POST)
     @ResponseBody
-    public R checkLogin(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public R checkLogin(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("verCode") String verCode, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Subject subject = ShiroUtils.getSubject();
+        String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
+        if (!verCode.equalsIgnoreCase(kaptcha)) {
+            return R.error("验证码不正确");
+        }
+
         try{
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             token.setRememberMe(true);

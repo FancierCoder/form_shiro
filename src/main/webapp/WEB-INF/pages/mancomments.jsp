@@ -232,9 +232,13 @@
                     }
                 }
             })
+        },
+        'click .glyphicon-refresh': function () {
+            setTimeout(function () {
+                getComment();
+            }, 500);
         }
-
-    }
+    };
 
     function getHeight() {
         return $(window).height() - $('h1').outerHeight(true);

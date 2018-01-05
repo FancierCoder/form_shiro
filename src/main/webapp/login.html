@@ -39,13 +39,19 @@
             <div class="form-group">
                 <input type="password" id="password" class="form-control" placeholder="密码">
             </div>
+            <div class="form-group">
+                <p>
+                    <input type="text" id="verCode" class="col-lg-6" placeholder="验证码">
+                    <img id="code" src="/captcha.jpg" height="30px" onclick="refreshCode();">
+                </p>
+            </div>
             <!--button标签默认是submit行为，他会自动提交表单，但是我的表单没有action所以会刷新，我曹-->
             <button type="button" id='submit' onClick="submitf();" class="btn btn-primary block full-width m-b">登 录
             </button>
 
             <p class="text-muted text-center"><a href="/forgetPass">
                 <small>忘记密码了？</small>
-            </a> <!--| <a href="#" id="register">注册一个新账号</a>-->
+            </a> | <a href="register.html" id="register">注册一个新账号</a>
             </p>
             <p id="tip"></p>
             <p>
@@ -65,9 +71,13 @@
         $.ajax({
             type: 'POST',
             url: "/user/checkLogin",
-            cache: false,
+            //cache: false,
             dataType: "json",
-            data: {username: $('#username').val().trim(), password: $('#password').val().trim()},
+            data: {
+                username: $('#username').val().trim(),
+                password: $('#password').val().trim(),
+                verCode: $('#verCode').val().trim()
+            },
             success: function (data) {
                 if (data.msg == "err") {
                     layer.tips("账号或密码错误", $('form'), {tips: [1, '#0FA6D8']}); //还可配置颜色
@@ -87,11 +97,15 @@
                     }
                 } else if (data.code == 500){
                     layer.tips(data.msg, $('form'));
+                    refreshCode();
                 }
             }
         });
     }
 
+    function refreshCode() {
+        $("#code").attr("src", "/captcha.jpg?t=" + $.now());
+    }
 
 </script>
 
