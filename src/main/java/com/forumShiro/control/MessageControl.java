@@ -52,7 +52,8 @@ public class MessageControl {
 
     @RequestMapping("/tosixin")
     public String toSixin(HttpServletRequest request, Map<String, Object> map) {
-        User me = (User) request.getSession(false).getAttribute("user");
+        User me = (User) ShiroUtils.getSubject().getPrincipal();
+        request.getSession(false).setAttribute("user", me);
         //查出我的所有好友列表
         Map map1 = new HashMap<String, Object>(1);
         map1.put("fromuid", me.getUid());
@@ -122,7 +123,7 @@ public class MessageControl {
     @RequestMapping("/askforaddfriend")
     @ResponseBody
     public void askForAddFriend(@RequestParam("hisuid") Long hisuid, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        User me = (User) request.getSession(false).getAttribute("user");
+        User me = (User) ShiroUtils.getSubject().getPrincipal();
         Addfriend addfriend = new Addfriend();
         addfriend.setFromuid(me.getUid());
         addfriend.setTouid(hisuid);
@@ -194,7 +195,7 @@ public class MessageControl {
      **/
     @RequestMapping("/finishaddfriend")
     public void finishAddFriend(@RequestParam("touid") long touid, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        User me = (User) request.getSession(false).getAttribute("user");
+        User me = (User) ShiroUtils.getSubject().getPrincipal();
         PrintWriter pw = response.getWriter();
         int i = addfriendMapper.finishAddFriend(me.getUid(), touid);
         if (i != 0) {
@@ -208,7 +209,7 @@ public class MessageControl {
     @RequestMapping("/acceptaddfriend")
     public void acceptAddFriend(@RequestParam("fromuid") long fromuid, HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter pw = response.getWriter();
-        User me = (User) request.getSession(false).getAttribute("user");
+        User me = (User) ShiroUtils.getSubject().getPrincipal();
         addfriendMapper.acceptAddFriend(fromuid, me.getUid());
         Friend friend = new Friend();
         friend.setFromuid(fromuid);
@@ -229,7 +230,7 @@ public class MessageControl {
     @RequestMapping("/rejectaddfriend")
     public void rejectAddFriend(@RequestParam("fromuid") long fromuid, HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter pw = response.getWriter();
-        User me = (User) request.getSession(false).getAttribute("user");
+        User me = (User) ShiroUtils.getSubject().getPrincipal();
         addfriendMapper.rejectAddFriend(fromuid, me.getUid());
         Map<String, Integer> countMap = webSocketHandler.unReadMsgCount(fromuid);
         webSocketHandler.sendMessageToUser(fromuid, new TextMessage(JSON.toJSONString(countMap)));
@@ -248,7 +249,7 @@ public class MessageControl {
     @RequestMapping("/openchatlastinfo")
     @ResponseBody
     public List<Sixin> openChatLastInfo(HttpServletRequest request, @RequestParam("hisuid") long hisuid) throws IOException {
-        User me = (User) request.getSession(false).getAttribute("user");
+        User me = (User) ShiroUtils.getSubject().getPrincipal();
         List<Sixin> sixinList = sixinMapper.selectLimitSixin(hisuid, me.getUid(), 100);
         sixinMapper.updateHaveRead(hisuid, me.getUid()); //更新未读-》已读
         SixinHandler.who_To_who.put(me.getUid(), hisuid); //说明我正在和hisuid聊天

@@ -1,6 +1,7 @@
 package com.forumShiro.websocket;
 
 import com.forumShiro.model.User;
+import com.forumShiro.shiro.ShiroUtils;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.http.server.ServletServerHttpRequest;
@@ -19,15 +20,14 @@ public class WebSocketHandshakeInterceptor implements HandshakeInterceptor {
             ServletServerHttpRequest serverRequest = (ServletServerHttpRequest) request;
             HttpSession session = serverRequest.getServletRequest().getSession(false);
             if (session != null) {
-                User user = (User) session.getAttribute("user");
+                User user = (User) ShiroUtils.getSubject().getPrincipal();
                 if (user != null) {
                     if (map.get("socketuid") == null) {
                         map.put("socketuid", user.getUid());
                         return true;
-                    } else {
-                        return true;
                     }
-                }
+                } else
+                    return true;
             } else {
                 return false;
             }

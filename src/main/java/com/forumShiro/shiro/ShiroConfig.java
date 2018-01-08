@@ -62,12 +62,13 @@ public class ShiroConfig {
         filterMap.put("/user/forgetpassword", "anon");
         filterMap.put("/user/checkRegister", "anon");
         filterMap.put("/section/**", "anon");
+        filterMap.put("/msgCountSocket", "anon");
+        filterMap.put("/chatouser", "anon");
         filterMap.put("/sockjs/**", "anon");
         filterMap.put("/show/**", "anon");
-        filterMap.put("/msgCountSocket", "anon");
         filterMap.put("/forgetPass", "anon");
         filterMap.put("/captcha.jpg", "anon");
-        filterMap.put("/**", "authc");
+        filterMap.put("/**", "anon");
         shiroFilter.setFilterChainDefinitionMap(filterMap);
 
 

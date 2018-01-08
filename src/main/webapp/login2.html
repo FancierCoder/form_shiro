@@ -135,6 +135,10 @@
     function refreshCode() {
         $("#code").attr("src", "/captcha.jpg?t=" + $.now());
     }
+
+    setTimeout(function () {
+        refreshCode();
+    }, 100);
 </script>
 
 

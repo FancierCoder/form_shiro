@@ -197,7 +197,7 @@
                     $('#discussion').html("");
                     for (var i = 0; i < data.length; i++) {
                         var discussiondiv = $('#discussion');
-                        if (data[i].sifromuid ==${sessionScope.user.uid}) {
+                        if (data[i].sifromuid == ${sessionScope.user.uid}) {
                             var isend = '<div class="chat-message"> ' +
                                 '<img class="mymessage-avatar " src="${staticPath}/static/img/${sessionScope.user.headimg}" alt=""> ' +
                                 '<div class="mymessage"> ' +

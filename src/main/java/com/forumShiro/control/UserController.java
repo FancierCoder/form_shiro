@@ -62,7 +62,13 @@ public class UserController {
     @ResponseBody
     public R checkLogin(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("verCode") String verCode, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Subject subject = ShiroUtils.getSubject();
-        String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
+        String kaptcha = null;
+        try {
+            kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
+        } catch (Exception e) {
+            return R.error("验证码已失效");
+        }
+
         if (!verCode.equalsIgnoreCase(kaptcha)) {
             return R.error("验证码不正确");
         }
@@ -128,7 +134,7 @@ public class UserController {
 
     @RequestMapping("/login")
     public String login(HttpServletRequest request) {
-        User user = (User) request.getSession(false).getAttribute("user");
+        User user = (User) ShiroUtils.getSubject().getPrincipal();
         if (user != null && user.getUid() != null) {
             return "redirect:/index.jsp";
         } else {
@@ -161,7 +167,8 @@ public class UserController {
 
     @RequestMapping("/showmyplace")
     public String showmyplace(HttpServletRequest request, HttpServletResponse response) {
-        User user = (User) request.getSession().getAttribute("user");
+        User user = (User) ShiroUtils.getSubject().getPrincipal();
+        request.getSession(false).setAttribute("user", user);
         long[] othernums = userOtherinfo(user.getUid());
         request.setAttribute("mytopicnum", othernums[0]);
         request.setAttribute("myconcernnum", othernums[1]);
@@ -252,7 +259,7 @@ public class UserController {
     @RequestMapping("/listmycomment")
     @ResponseBody
     public List<CommentVo> listMyComments(HttpServletRequest request) {
-        User me = (User) request.getSession(false).getAttribute("user");
+        User me = (User) ShiroUtils.getSubject().getPrincipal();
         Map mapwhere = new HashMap(1);
         mapwhere.put("cuid", me.getUid());
         List<Comment> comments = commentMapper.selectByMap(mapwhere);
@@ -269,7 +276,7 @@ public class UserController {
     public void deleteComment(@RequestParam("cid") long cid, HttpServletResponse response, HttpServletRequest request) throws Exception {
         int i = commentMapper.deleteById(cid);
         PrintWriter pw = response.getWriter();
-        User user = (User) request.getSession(false).getAttribute("user");
+        User user = (User) ShiroUtils.getSubject().getPrincipal();
         if (i == 1) {
             //记录
             Logtable logtable = new Logtable(user.getUid(), new IpUtil().getIp(request), 8);
@@ -286,7 +293,7 @@ public class UserController {
         List cidlist = Arrays.asList(cids);
         int i = commentMapper.deleteBatchIds(cidlist);
         PrintWriter pw = response.getWriter();
-        User user = (User) request.getSession(false).getAttribute("user");
+        User user = (User) ShiroUtils.getSubject().getPrincipal();
         if (i != cidlist.size()) {
             //记录
             Logtable logtable = new Logtable(user.getUid(), new IpUtil().getIp(request), 8);
@@ -515,7 +522,7 @@ public class UserController {
             if (i == 1) {
                 //记录
                 String ip = new IpUtil().getIp(request);
-                User user = (User) request.getSession(false).getAttribute("user");
+                User user = (User) ShiroUtils.getSubject().getPrincipal();
                 Logtable logtable = new Logtable(user.getUid(), ip, 6);
                 logtableMapper.insert(logtable);
                 pw.write("ok");
